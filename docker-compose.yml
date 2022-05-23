@@ -1,0 +1,78 @@
+version: "3"
+services:
+  mongo:
+    restart: always
+    image: mongo
+    container_name: mongodb_cbot
+    ports:
+    - "27018:27018"
+    volumes:
+       - "/home/data/db:/data/db"
+    networks:
+       - reseau_bd
+    command: mongod --auth
+
+
+  Cbot30m:
+    restart: always
+    image: 199245480/bot_v1:version3
+    container_name: bot30m
+    depends_on:
+    - "mongo"
+    networks:
+    - reseau_bd
+    environment:
+    - BOTNAME=BTC30M
+    - SYMBOL=BTCUSDT
+    - WALLET=1
+    - TRADE_PERCENT=10
+    - TP_QUANTITY=5
+    - STOP=2
+    - TAKE_PROFIT=3
+    - BOT_ID=1715879933:AAE6474d3bA-mOPjuJpBgwjqkD0JdsWBI50
+    - CHAT_ID=1624287305
+    - API_KEY=m1BX80i3ynAseujZ8qgvp9vBa7zUfv0QBCH4UTf5a6o8XCRo5lyPEwA2JGV2aPhg
+    - SECRET_KEY=vFoT0oGOjggEJJNdG71p8nzfY8amN6MEUK69B8rLRCcbvsHfR9YwMbB6u9rpnDP1
+    - MONGO_ADDRESS=mongodb_cbot
+    - DB=Cbotmongo
+    - DB_USER=App
+    - DB_MDP=abkeycv 
+    volumes:
+       - "/home/data/btc30m/bot:/data/btc30m"
+    command: bash -c "cd /data/btc30m && python3 bot.py"
+
+
+  Cbot5m:
+    restart: always
+    image: 199245480/bot_v1:version3
+    container_name: bot5m
+    depends_on:
+    - "mongo"
+    networks:
+    - reseau_bd
+    environment:
+    - BOTNAME=BTC5M
+    - SYMBOL=BTCUSDT
+    - WALLET=1
+    - TRADE_PERCENT=10
+    - TP_QUANTITY=5
+    - STOP=2
+    - TAKE_PROFIT=3
+    - BOT_ID=1715879933:AAE6474d3bA-mOPjuJpBgwjqkD0JdsWBI50
+    - CHAT_ID=1624287305
+    - API_KEY=m1BX80i3ynAseujZ8qgvp9vBa7zUfv0QBCH4UTf5a6o8XCRo5lyPEwA2JGV2aPhg
+    - SECRET_KEY=vFoT0oGOjggEJJNdG71p8nzfY8amN6MEUK69B8rLRCcbvsHfR9YwMbB6u9rpnDP1
+    - MONGO_ADDRESS=mongodb_cbot
+    - DB=Cbotmongo
+    - DB_USER=App
+    - DB_MDP=abkeycv 
+    volumes:
+       - "/home/data/btc5m/bot:/data/btc5m"
+    command: bash -c "cd /data/btc5m && python3 bot.py"
+
+
+networks:
+  reseau_bd:
+    driver: bridge
+
+
