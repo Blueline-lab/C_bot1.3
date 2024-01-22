@@ -32,7 +32,7 @@ services:
     - BOT_ID=1715879933:AAE6474d3bA-mOPjuJpBgwjqkD0JdsWBI50
     - CHAT_ID=1624287305
     - API_KEY=m1BX80i3ynAseujZ8qgvp9vBa7zUfv0QBCH4UTf5a6o8XCRo5lyPEwA2JGV2aPhg
-    - SECRET_KEY=vFoT0oGOjggEJJNdG71p8nzfY8amN6MEUK69B8rLRCcbvsHfR9YwMbB6u9rpnDP1
+    - SECRET_KEY=
     - MONGO_ADDRESS=mongodb_cbot
     - DB=Cbotmongo
     - DB_USER=App
